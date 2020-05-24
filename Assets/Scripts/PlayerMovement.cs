@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController2D controller;
     float horizontalMove =0;
     bool jumping = false;
+    bool crouching = false;
     public float runspeed = 40f;
     // Start is called before the first frame update
     void Start()
@@ -19,10 +20,11 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runspeed;
         jumping = Input.GetKey("w");
+        crouching = Input.GetKey("s");
     }
     void FixedUpdate()
     {
         //movement
-        controller.Move(horizontalMove * Time.fixedDeltaTime,false, jumping);
+        controller.Move(horizontalMove * Time.fixedDeltaTime,crouching, jumping);
     }
 }
