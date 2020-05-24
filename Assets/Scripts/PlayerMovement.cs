@@ -4,35 +4,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float turnSpeed = 20f;
-
-    Animator m_Animator;
-    Rigidbody m_Rigidbody;
-    AudioSource m_AudioSource;
-    Vector3 m_Movement;
-    Quaternion m_Rotation = Quaternion.identity;
-
+    public CharacterController2D controller;
+    float horizontalMove =0;
+    bool jumping = false;
+    public float runspeed = 40f;
+    // Start is called before the first frame update
     void Start()
     {
-        m_Animator = GetComponent<Animator>();
-        m_Rigidbody = GetComponent<Rigidbody>();
+        
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        horizontalMove = Input.GetAxisRaw("Horizontal") * runspeed;
+        jumping = Input.GetKey("w");
+    }
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        m_Movement.Set(horizontal, vertical, 0f);
-        m_Movement.Normalize();
-
-        Vector3 desiredForward =
-            Vector3.RotateTowards(transform.forward, m_Movement, turnSpeed * Time.deltaTime, 0f);
-        m_Rotation = Quaternion.LookRotation(desiredForward);
-    }
-    void OnAnimatorMove()
-    {
-        m_Rigidbody.MovePosition(m_Rigidbody.position + m_Movement * m_Animator.deltaPosition.magnitude);
-        m_Rigidbody.MoveRotation(m_Rotation);
+        //movement
+        controller.Move(horizontalMove * Time.fixedDeltaTime,false, jumping);
     }
 }
