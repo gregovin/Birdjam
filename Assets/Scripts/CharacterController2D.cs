@@ -128,7 +128,7 @@ public class CharacterController2D : MonoBehaviour
         if (Physics2D.OverlapCircle(m_GroundCheck.position, k_CeilingRadius, m_WhatIsGround))
         {
             GameObject temp = Physics2D.OverlapCircle(m_GroundCheck.position, k_CeilingRadius, m_WhatIsGround).gameObject;
-            if (temp.GetComponent<Renderer>().bounds.size.magnitude < 10)
+            if (temp.GetComponent<Renderer>().bounds.size.magnitude < 9)
             {
                 return temp;
             }
@@ -154,7 +154,7 @@ public class CharacterController2D : MonoBehaviour
             grabing = null;
         } else if(cur && prev != cur)
         {
-            if (GetGrabbed()) grabing = GetGrabbed();
+            if (GetGrabbed() != null) grabing = GetGrabbed();
             grabing.GetComponent<Collider2D>().enabled = false;
         }
         if(grabing != null)
