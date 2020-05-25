@@ -41,8 +41,8 @@ public class CharacterController2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        glideMagX = (float)(gravity * 3 * Math.Sin(glideangle * Math.PI / 180) * Math.Cos(glideangle * Math.PI / 180));
-        glideMagY = (float)(gravity * Math.Sin(glideangle * Math.PI / 180) * Math.Sin(glideangle * Math.PI / 180));
+        glideMagX = (float)(gravity * 6 * Math.Sin(glideangle * Math.PI / 180) * Math.Cos(glideangle * Math.PI / 180));
+        glideMagY = (float)(gravity/2 * Math.Sin(glideangle * Math.PI / 180) * Math.Sin(glideangle * Math.PI / 180));
 
         if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
