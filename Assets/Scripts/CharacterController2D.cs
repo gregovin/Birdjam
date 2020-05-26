@@ -8,6 +8,7 @@ public class CharacterController2D : MonoBehaviour
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
+    [SerializeField] private LayerMask m_Grabbable;
 	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
     public Transform m_This;
@@ -18,10 +19,8 @@ public class CharacterController2D : MonoBehaviour
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
     public float glideangle = 10;
-    public float gravity = 10;
-    float glideMagX = 0;
-    
-    float glideMagY = 0;
+    float gangleRads;
+    public float glideConstant = 0.5f;
     int direction = 1;
     [Header("Events")]
     [Space]
@@ -37,14 +36,13 @@ public class CharacterController2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        glideMagX = (float)(gravity * 6 * Math.Sin(glideangle * Math.PI / 180) * Math.Cos(glideangle * Math.PI / 180));
-        glideMagY = (float)(gravity/2 * Math.Sin(glideangle * Math.PI / 180) * Math.Sin(glideangle * Math.PI / 180));
 
         if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
         Flip();
 		if (OnCrouchEvent == null)
 			OnCrouchEvent = new BoolEvent();
+        gangleRads = (float) (glideangle * Math.PI / 180);
 
 	}
 
@@ -71,7 +69,15 @@ public class CharacterController2D : MonoBehaviour
 	public void Move(float move, bool crouch, bool jump)
 	{
         if(!Physics2D.OverlapCircle(m_GroundCheck.position, k_CeilingRadius, m_WhatIsGround) && !crouch) {
-            m_Rigidbody2D.AddForce(new Vector2(glideMagX * direction, -glideMagY));
+            Vector2 v= m_Rigidbody2D.velocity;
+            if(v.y < 0)
+            {
+                double targetMag = Math.Sqrt(v.x * v.x + v.y * v.y);
+                if (v.x == 0 || Math.Abs(Math.Atan(v.y / v.x)) > gangleRads)
+                {
+                    m_Rigidbody2D.velocity = new Vector2((float)(targetMag * Math.Cos(gangleRads) * direction), -(float)(targetMag * Math.Sin(gangleRads)));
+                }
+            }
 
         }
 		// If crouching, check to see if the character can stand up
@@ -115,9 +121,9 @@ public class CharacterController2D : MonoBehaviour
 
     private GameObject GetGrabbed()
     {
-        if (Physics2D.OverlapCircle(m_GroundCheck.position, k_CeilingRadius, m_WhatIsGround))
+        if (Physics2D.OverlapCircle(m_GroundCheck.position, k_CeilingRadius, m_Grabbable))
         {
-            return Physics2D.OverlapCircle(m_GroundCheck.position, k_CeilingRadius, m_WhatIsGround).gameObject;
+            return Physics2D.OverlapCircle(m_GroundCheck.position, k_CeilingRadius, m_Grabbable).gameObject;
         }
         return null;
     }
