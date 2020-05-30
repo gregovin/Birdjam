@@ -143,11 +143,15 @@ public class CharacterController2D : MonoBehaviour
         if(cur && prev != cur && grabing !=null)
         {
             grabing.GetComponent<Collider2D>().enabled = true;
+            grabing.GetComponent<Rigidbody2D>().gravityScale = 1;
             grabing = null;
         } else if(cur && prev != cur)
         {
-            if (GetGrabbed()) grabing = GetGrabbed();
-            grabing.GetComponent<Collider2D>().enabled = false;
+            if (GetGrabbed()){
+                grabing = GetGrabbed();
+                grabing.GetComponent<Collider2D>().enabled = false;
+                grabing.GetComponent<Rigidbody2D>().gravityScale = 0f;
+            }
         }
         if(grabing != null)
         {
