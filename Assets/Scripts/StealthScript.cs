@@ -46,6 +46,7 @@ public class StealthScript : MonoBehaviour
         } else
         {
             Vector3 relativeDisplacement = target.transform.position - m_Transform.position;
+            float mag = relativeDisplacement.x * relativeDisplacement.x + relativeDisplacement.y * relativeDisplacement.y;
             Vector3 normalDisplacement = relativeDisplacement;
             normalDisplacement.Normalize();
             normalDisplacement.y = 0;
@@ -57,10 +58,9 @@ public class StealthScript : MonoBehaviour
                 transform.localScale = theScale;
             }
             m_Rigidbody.velocity = normalDisplacement;
-            controller.SetBool("Attacking", relativeDisplacement.magnitude < 2);
-            attackBlob.enabled = relativeDisplacement.magnitude < 2;
-            Debug.Log(relativeDisplacement.magnitude);
-            if(relativeDisplacement.magnitude > 4)
+            controller.SetBool("Attacking", mag < 4);
+            attackBlob.enabled = mag < 4;
+            if(mag > 16)
             {
                 walking = false;
                 controller.SetBool("Spotted", false);
