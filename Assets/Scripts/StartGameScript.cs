@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class AttackDetector : MonoBehaviour
+public class StartGameScript : MonoBehaviour
 {
-    public Collider2D player;
     // Start is called before the first frame update
-    void OnTriggerEnter2D(Collider2D other)
+    public void LetItBegin()
     {
-        if(player == other) SceneManager.LoadScene("Title Screen");
+        SceneManager.LoadScene("MainScene");
     }
 }
