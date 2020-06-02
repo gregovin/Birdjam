@@ -6,6 +6,8 @@ public class StealthScript : MonoBehaviour
 {
     public Collider2D[] colliders;
     public Collider2D attackBlob;
+    public AudioClip walkingAudio;
+    public AudioClip attackingAudio;
     float timeKeeper = 0;
     int colliderChoosen = 0;
     int dir = 1;
@@ -13,6 +15,7 @@ public class StealthScript : MonoBehaviour
     public Transform defaultPos;
     private Rigidbody2D m_Rigidbody;
     private Transform m_Transform;
+    private AudioSource m_AudioSource;
     bool walking = false;
     GameObject target;
     Animator controller;
@@ -23,6 +26,7 @@ public class StealthScript : MonoBehaviour
         controller = GetComponent<Animator>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_Transform = GetComponent<Transform>();
+        m_AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -64,6 +68,12 @@ public class StealthScript : MonoBehaviour
             {
                 walking = false;
                 controller.SetBool("Spotted", false);
+            }
+            if (!m_AudioSource.isPlaying && mag > 4)
+            {
+                m_AudioSource.PlayOneShot(walkingAudio);
+            } else if(mag < 4){
+                m_AudioSource.PlayOneShot(attackingAudio);
             }
         }
     }
