@@ -121,7 +121,7 @@ public class CharacterController2D : MonoBehaviour
 
     private GameObject GetGrabbed()
     {
-        if (Physics2D.OverlapCircle(m_GroundCheck.position, k_CeilingRadius, m_Grabbable))
+        if (Physics2D.OverlapCircle(m_GroundCheck.position, 2*k_CeilingRadius, m_Grabbable))
         {
             return Physics2D.OverlapCircle(m_GroundCheck.position, k_CeilingRadius, m_Grabbable).gameObject;
         }

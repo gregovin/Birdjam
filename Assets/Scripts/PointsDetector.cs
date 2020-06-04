@@ -14,7 +14,6 @@ public class PointsDetector : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("collided");
         if (((1<<other.gameObject.layer) & grabbable) == 1 << other.gameObject.layer)
         {
             score.text = "" + (int.Parse(score.text) + 100);

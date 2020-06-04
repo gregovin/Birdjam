@@ -59,12 +59,21 @@ public class MalePersonScript : MonoBehaviour
             m_Rigidbody.velocity = normalDisplacement;
             controller.SetBool("Attacking", mag < 4);
             attackBlob.enabled = mag < 4;
+            if (normalDisplacement.x * dir > 0)
+            {
+                Vector3 theScale = transform.localScale;
+                theScale.x *= -1;
+                dir *= -1;
+                transform.localScale = theScale;
+            }
             if (mag > 16)
             {
+                Walkback();
             }
-            if (!m_AudioSource.isPlaying && mag > 4)
+            else if (!m_AudioSource.isPlaying && mag > 4)
             {
                 m_AudioSource.PlayOneShot(walkingAudio);
+
             }
             else if (mag < 4)
             {
@@ -79,7 +88,7 @@ public class MalePersonScript : MonoBehaviour
         Vector3 normalDisplacement = relativeDisplacement;
         normalDisplacement.Normalize();
         normalDisplacement.y = 0;
-        if (normalDisplacement.x * dir < 0)
+        if (normalDisplacement.x * dir > 0)
         {
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
@@ -87,10 +96,17 @@ public class MalePersonScript : MonoBehaviour
             transform.localScale = theScale;
         }
         m_Rigidbody.velocity = normalDisplacement;
-        if(mag2 < 0.3)
+        if(mag2 < 0.2)
         {
             walking = false;
             controller.SetBool("Walking", false);
+            if(dir != 1)
+            {
+                Vector3 theScale = transform.localScale;
+                theScale.x *= -1;
+                dir *= -1;
+                transform.localScale = theScale;
+            }
         }
     }
     public void Seen(GameObject other)
