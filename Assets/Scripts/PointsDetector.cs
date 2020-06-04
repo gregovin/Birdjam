@@ -7,6 +7,11 @@ public class PointsDetector : MonoBehaviour
 {
     public LayerMask grabbable;
     public Text score;
+    AudioSource m_audioSource;
+    void Start()
+    {
+        m_audioSource = GetComponent<AudioSource>();
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("collided");
@@ -14,6 +19,7 @@ public class PointsDetector : MonoBehaviour
         {
             score.text = "" + (int.Parse(score.text) + 100);
             Destroy(other.gameObject);
+            m_audioSource.Play();
         }
     }
 }
