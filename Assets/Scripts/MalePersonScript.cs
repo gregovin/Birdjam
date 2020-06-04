@@ -57,8 +57,8 @@ public class MalePersonScript : MonoBehaviour
             normalDisplacement.Normalize();
             normalDisplacement.y = 0;
             m_Rigidbody.velocity = normalDisplacement;
-            controller.SetBool("Attacking", mag < 4);
-            attackBlob.enabled = mag < 4;
+            controller.SetBool("Attacking", mag < 2);
+            attackBlob.enabled = mag < 2;
             if (normalDisplacement.x * dir > 0)
             {
                 Vector3 theScale = transform.localScale;
@@ -70,12 +70,12 @@ public class MalePersonScript : MonoBehaviour
             {
                 Walkback();
             }
-            else if (!m_AudioSource.isPlaying && mag > 4)
+            else if (!m_AudioSource.isPlaying && mag > 2)
             {
                 m_AudioSource.PlayOneShot(walkingAudio);
 
             }
-            else if (mag < 4)
+            else if (mag < 2)
             {
                 m_AudioSource.PlayOneShot(attackingAudio);
             }

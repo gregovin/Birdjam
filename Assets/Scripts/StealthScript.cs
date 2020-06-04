@@ -62,17 +62,17 @@ public class StealthScript : MonoBehaviour
                 transform.localScale = theScale;
             }
             m_Rigidbody.velocity = normalDisplacement;
-            controller.SetBool("Attacking", mag < 4);
-            attackBlob.enabled = mag < 4;
+            controller.SetBool("Attacking", mag < 2);
+            attackBlob.enabled = mag < 2;
             if(mag > 16)
             {
                 walking = false;
                 controller.SetBool("Spotted", false);
             }
-            if (!m_AudioSource.isPlaying && mag > 4)
+            if (!m_AudioSource.isPlaying && mag > 2)
             {
                 m_AudioSource.PlayOneShot(walkingAudio);
-            } else if(mag < 4){
+            } else if(mag < 1){
                 m_AudioSource.PlayOneShot(attackingAudio);
             }
         }
