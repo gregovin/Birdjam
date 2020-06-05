@@ -634,7 +634,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.7662201, y: -0.17989492}
@@ -691,7 +691,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 226687231}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.79, y: 0, z: 0}
+  m_LocalPosition: {x: -28.98, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 19201873}
@@ -1391,7 +1391,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -2.74, y: 0.01655024}
@@ -4002,7 +4002,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687455117}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.27, y: 0.79, z: -6.6955996}
+  m_LocalPosition: {x: -28.88, y: 0.79, z: -6.6955996}
   m_LocalScale: {x: -1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 787373997}
@@ -4142,7 +4142,7 @@ MonoBehaviour:
   - {fileID: 787373998}
   attackBlob: {fileID: 408999138}
   walkingAudio: {fileID: 8300000, guid: 57c1d805699a798489ac008e8c73bce7, type: 3}
-  attackingAudio: {fileID: 8300000, guid: 8610148e43a4dd24eb80e12b92c30d03, type: 3}
+  attackingAudio: {fileID: 8300000, guid: 43af8af020cd3c849828b238e6960396, type: 3}
   defaultPos: {fileID: 226687232}
 --- !u!82 &1687455124
 AudioSource:
