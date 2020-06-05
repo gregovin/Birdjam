@@ -83,11 +83,12 @@ public class MalePersonScript : MonoBehaviour
     }
     public void Walkback()
     {
-        Vector3 relativeDisplacement = defaultPos.position - m_Transform.position;
-        float mag2 = relativeDisplacement.x * relativeDisplacement.x + relativeDisplacement.y * relativeDisplacement.y;
-        Vector3 normalDisplacement = relativeDisplacement;
+        Vector3 relative = defaultPos.position - m_Transform.position;
+        float mag2 = relative.x * relative.x + relative.y * relative.y;
+        Vector3 normalDisplacement = relative;
         normalDisplacement.Normalize();
         normalDisplacement.y = 0;
+        normalDisplacement.x *= 2;
         if (normalDisplacement.x * dir > 0)
         {
             Vector3 theScale = transform.localScale;
@@ -96,7 +97,7 @@ public class MalePersonScript : MonoBehaviour
             transform.localScale = theScale;
         }
         m_Rigidbody.velocity = normalDisplacement;
-        if(mag2 < 0.2)
+        if(mag2 < 0.5)
         {
             walking = false;
             controller.SetBool("Walking", false);

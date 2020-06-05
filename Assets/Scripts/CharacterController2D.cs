@@ -7,9 +7,9 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
 	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
-	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
-    [SerializeField] private LayerMask m_Grabbable;
-	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
+	public LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
+    public LayerMask m_Grabbable;
+	public Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
     public Transform m_This;
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
