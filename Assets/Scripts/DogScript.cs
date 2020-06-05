@@ -30,7 +30,7 @@ public class DogScript : MonoBehaviour
         if (!walking)
         {
             timeKeeper += Time.fixedDeltaTime;
-            if (timeKeeper > 5)
+            if (timeKeeper > 2.5)
             {
                 timeKeeper = 0;
                 facing = !facing;

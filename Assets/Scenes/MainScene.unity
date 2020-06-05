@@ -710,7 +710,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193225557}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -2177,6 +2177,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   score: {fileID: 1748208036}
+  pointsAudio: {fileID: 8300000, guid: 8610148e43a4dd24eb80e12b92c30d03, type: 3}
+  Winner: {fileID: 8300000, guid: 794e1921517e27649bb46744f36e2e7d, type: 3}
 --- !u!82 &932739590
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2187,7 +2189,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8610148e43a4dd24eb80e12b92c30d03, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2875,7 +2877,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.57, y: 0.016550237}
+  m_Offset: {x: -2.57, y: 0.016550237}
   m_Size: {x: 5.170693, y: 0.9669048}
   m_Direction: 1
 --- !u!114 &1050490741
@@ -3595,6 +3597,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LinearDrag
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8619610376756907276, guid: 40dadbb799089b44887464cff217abf4,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40dadbb799089b44887464cff217abf4, type: 3}

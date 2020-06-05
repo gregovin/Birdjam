@@ -9,6 +9,9 @@ public class AttackDetector : MonoBehaviour
     // Start is called before the first frame update
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(player == other) SceneManager.LoadScene("Title Screen");
+        if (player == other)
+        {
+            SceneManager.LoadScene("Title Screen");
+        }
     }
 }

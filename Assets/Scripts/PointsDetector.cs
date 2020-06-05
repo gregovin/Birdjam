@@ -8,6 +8,9 @@ public class PointsDetector : MonoBehaviour
     public LayerMask grabbable;
     public Text score;
     AudioSource m_audioSource;
+    public AudioClip pointsAudio;
+    public AudioClip Winner;
+    int points = 0;
     void Start()
     {
         m_audioSource = GetComponent<AudioSource>();
@@ -16,9 +19,15 @@ public class PointsDetector : MonoBehaviour
     {
         if (((1<<other.gameObject.layer) & grabbable) == 1 << other.gameObject.layer)
         {
-            score.text = "" + (int.Parse(score.text) + 100);
+            points += 100;
+            score.text = "" + points;
             Destroy(other.gameObject);
-            m_audioSource.Play();
+            m_audioSource.PlayOneShot(pointsAudio);
+        }
+        if(points == 500)
+        {
+            m_audioSource.PlayOneShot(Winner);
+
         }
     }
 }

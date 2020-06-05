@@ -123,7 +123,7 @@ public class CharacterController2D : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(m_GroundCheck.position, 2*k_CeilingRadius, m_Grabbable))
         {
-            return Physics2D.OverlapCircle(m_GroundCheck.position, k_CeilingRadius, m_Grabbable).gameObject;
+            return Physics2D.OverlapCircle(m_GroundCheck.position, 2*k_CeilingRadius, m_Grabbable).gameObject;
         }
         return null;
     }
